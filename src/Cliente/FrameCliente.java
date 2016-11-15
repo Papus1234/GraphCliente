@@ -7,6 +7,7 @@ package Cliente;
 
 import java.awt.Component;
 import java.io.IOException;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -77,7 +78,17 @@ public class FrameCliente extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una Persona" }));
+        jComboBox1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jComboBox1FocusGained(evt);
+            }
+        });
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
@@ -145,14 +156,19 @@ public class FrameCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       this.cliente=new Client(this.jTextField1.getText());
+       this.cliente=new Client(this.jTextField1.getText(),this.jTextArea2,this.jComboBox1);
        try{
            System.err.println("pasa por aca");
        if (this.conectado==false){
             cliente.conectar();
             System.err.println("conectado");
             this.conectado=true;
+       
        }
+       
+       Thread lis=new Thread(cliente.new IncomingReader());
+       lis.start();
+       
        }catch(IOException e){
            e.printStackTrace();
        }
@@ -164,6 +180,19 @@ public class FrameCliente extends javax.swing.JFrame {
         
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jComboBox1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBox1FocusGained
+        
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1FocusGained
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        
+
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
