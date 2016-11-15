@@ -16,6 +16,7 @@ import javax.swing.DefaultComboBoxModel;
 public class FrameCliente extends javax.swing.JFrame {
     Client cliente;
     boolean conectado=false;
+    String []nombUsers;
     /**
      * Creates new form FrameCliente
      */
@@ -176,7 +177,9 @@ public class FrameCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.cliente.enviar(this.jTextField2.getText());
+        System.err.println(this.jComboBox1.getSelectedItem().toString());
+        
+        this.cliente.enviar(this.jTextField2.getText(),this.jComboBox1.getSelectedItem().toString());
         
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed

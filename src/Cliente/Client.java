@@ -64,9 +64,10 @@ public class Client {
         this.estado=":" + "Chat";
     }
     
-    public void enviar(String mensaje){
+    public void enviar(String mensaje,String destinatario){
         estado=":" + "Chat";
-        printWtriWriter.println(this.name+":"+mensaje+estado);
+        printWtriWriter.println(this.name+":"+mensaje+"/"
+                +destinatario+estado);
         printWtriWriter.flush();
      }
     
@@ -80,7 +81,10 @@ public class Client {
         public void run() 
         {
             String[] data;
-            String stream, done = "Done", connect = "Connect", disconnect = "Disconnect", chat = "Chat";
+            String stream, done = "Done", 
+                    connect = "Connect", 
+                    disconnect = "Disconnect", 
+                    chat = "Chat";
 
             try 
             {
